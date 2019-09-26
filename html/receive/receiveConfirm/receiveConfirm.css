@@ -1,0 +1,60 @@
+.readingWrapper {
+    background: rgba(0, 0, 0, 0.55);
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nfcReading {
+    background: white;
+    width: 80%;
+    border-radius: 10px;
+    padding: 5%;
+    position: relative;
+    box-shadow: 1px 1px 9px rgba(70, 70, 70, 0.77);
+}
+
+.spinner {
+    position: absolute;
+    width: 90%;
+    margin: 0;
+}
+
+.nfcText {
+    margin: 70px 0 0 0;
+    text-align: center;
+}
+
+.ultra-btn {
+    text-align: center;
+    line-height: 45px;
+    font-size: 16px;
+    margin: 7% 0 0 0;
+}
+
+.ultra-item .iconfont {
+    width: 20%;
+    position: absolute;
+    right: 0;
+    font-size: 30px;
+    text-align: center;
+    border-left: 1px solid #fafafa;
+    margin-right: -2.5%;
+    pointer-events: all;
+}
+
+@media only screen and (min-width: 600px) {
+    .ultra-item .ultra-label {
+        font-size: 22px;
+    }
+    .ultra-item input, .ultra-item textarea {
+        font-size: 22px;
+    }
+    .ultra-bottom-btn {
+        font-size: 22px;
+    }
+}

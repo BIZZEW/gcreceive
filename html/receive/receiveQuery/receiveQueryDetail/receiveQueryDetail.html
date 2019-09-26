@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../../../css/iuapmobile.um.css">
+    <link rel="stylesheet" href="../../../../css/mintui.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1097062_q9eq44e61yl.css"> -->
+    <link type="text/css" rel="stylesheet" href="../../../util/iconfont.css">
+    <link rel="stylesheet" href="../../../util/util.css">
+    <link rel="stylesheet" href="receiveQueryDetail.css">
+
+    <script type="text/javascript" src="../../../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../../js/summer.js"></script>
+    <script type="text/javascript" src="../../../../js/Frameworks/iuapmobile.frameworks.ui.js"></script>
+    <script type="text/javascript" src="../../../../node_modules/vue/dist/vue.min.js"></script>
+    <script type="text/javascript" src="../../../../js/mintui.js"></script>
+    <script type="text/javascript" src="../../../util/util.js"></script>
+    <script type="text/javascript" src="../../../../js/her.min.js"></script>
+    <script type="text/javascript" src="receiveQueryDetail.js"></script>
+</head>
+
+<body>
+    <div class="loadingLayer"></div>
+    <div class="um-win" id="index" :class=module_id>
+        <div class="um-header header-bg">
+            <a href="#" class="um-back" @click="goback"></a>
+            <h3 class="title-color">详&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;情</h3>
+            <div class="um-header-btns"></div>
+        </div>
+
+        <div class="um-content">
+            <div class="ultra-item">
+                <label class="ultra-label">车号</label>
+                <div class="ultra-content"><input placeholder="车号" type="text" v-model="plateNum" readonly></div>
+            </div>
+
+            <div class="ultra-item">
+                <label class="ultra-label">供应商</label>
+                <div class="ultra-content"><input placeholder="供应商名称" type="text" v-model="supplierName" readonly></div>
+            </div>
+
+            <div class="ultra-item">
+                <label class="ultra-label">物料</label>
+                <div class="ultra-content"><input placeholder="物料" type="text" v-model="materialName" readonly></div>
+            </div>
+
+            <div class="ultra-item">
+                <label class="ultra-label">毛重</label>
+                <div class="ultra-content"><input placeholder="毛重" type="text" v-model="grossWeight" readonly></div>
+            </div>
+
+            <div class="ultra-item">
+                <label class="ultra-label">扣吨</label>
+                <div class="ultra-content"><input placeholder="扣吨" type="number" v-model="deduction" readonly></div>
+            </div>
+
+            <div class="ultra-item">
+                <label class="ultra-label">供方净重</label>
+                <div class="ultra-content"><input placeholder="供方净重" type="number" v-model="supplierNetWeight" readonly>
+                </div>
+            </div>
+
+            <div class="ultra-item">
+                <label class="ultra-label">验收意见</label>
+                <div class="ultra-content"><input placeholder="验收意见" type="text" v-model="auditionComment" readonly>
+                </div>
+            </div>
+
+            <div class="ultra-item">
+                <label class="ultra-label">验收员</label>
+                <div class="ultra-content"><input placeholder="验收员" type="text" v-model="auditorName" readonly></div>
+            </div>
+
+            <div class="ultra-item">
+                <label class="ultra-label">验收时间</label>
+                <div class="ultra-content"><input placeholder="验收时间" type="text" v-model="auditionTime" readonly></div>
+            </div>
+
+            <div class="ultra-item">
+                <label class="ultra-label">磅单单号</label>
+                <div class="ultra-content"><input placeholder="磅单单号" type="text" v-model="vbillcode" readonly></div>
+            </div>
+
+            <div class="ultra-item" style="margin-bottom: 100px">
+                <label class="ultra-label">运输公司</label>
+                <div class="ultra-content"><input placeholder="运输公司名称" type="text" v-model="transporterName" readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

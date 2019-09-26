@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../../css/iuapmobile.um.css">
+    <link rel="stylesheet" href="../../../css/mintui.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1097062_3peymho9zmr.css"> -->
+    <link type="text/css" rel="stylesheet" href="../../util/iconfont.css">
+    <link rel="stylesheet" href="../../util/util.css">
+    <link rel="stylesheet" href="receiveQuery.css">
+
+    <script type="text/javascript" src="../../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../js/summer.js"></script>
+    <script type="text/javascript" src="../../../js/Frameworks/iuapmobile.frameworks.ui.js"></script>
+    <script type="text/javascript" src="../../../node_modules/vue/dist/vue.min.js"></script>
+    <script type="text/javascript" src="../../../js/vue.js"></script>
+    <script type="text/javascript" src="../../../js/mintui.js"></script>
+    <script type="text/javascript" src="../../util/util.js"></script>
+    <script type="text/javascript" src="../../util/lang/lang.js"></script>
+    <script type="text/javascript" src="../../../js/her.min.js"></script>
+    <script type="text/javascript" src="receiveQuery.js"></script>
+</head>
+
+<body>
+    <div class="loadingLayer"></div>
+    <div class="um-win" id="index" :class=module_id>
+        <div class="um-header header-bg">
+            <a href="#" class="um-back" @click="goback"></a>
+            <h3 class="title-color" v-text="module_title"></h3>
+        </div>
+
+        <div class="um-content">
+            <div class="query-kit fixed">
+                <div class="ultra-item">
+                    <label class="ultra-label">开始时间</label>
+                    <div class="ultra-content">
+                        <input type="text" class="double-percent" @click="open('picker-date-begin')" v-model="beginDate"
+                            readonly>
+                    </div>
+                </div>
+
+                <div class="ultra-item" style="border-bottom: 1px solid #fafafa;">
+                    <label class="ultra-label">结束时间</label>
+                    <div class="ultra-content">
+                        <input type="text" class="double-percent" @click="open('picker-date-stop')" v-model="stopDate"
+                            readonly>
+                    </div>
+                </div>
+
+                <div class="ultra-btn two-in-row restore" @click="reset()">
+                    <div class="icon iconfont icon-refresh icon-onbtn"></div>
+                    <div>重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;置</div>
+                </div>
+
+                <div class="ultra-btn two-in-row query" @click="query()">
+                    <div class="icon iconfont icon-query icon-onbtn"></div>
+                    <div>查&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;询</div>
+                </div>
+            </div>
+
+            <div class="gap"></div>
+
+            <div class="empty-view" v-if="logList.length==0">
+                <div class="icon iconfont icon-kong1"></div>
+            </div>
+
+            <div id="ultra-scroll-list" class="ultra-scroll-list" @scroll="onScroll">
+                <div class="ultra-list-item" v-for="(item, index) in logList" @click="goDetail(index)">
+                    <div class="log-item-inner">
+                        <div class="log-item-row">
+                            <div class="log-item-content" v-text='"磅\xa0\xa0单\xa0\xa0号:\xa0\xa0"+item.vbillcode'></div>
+                        </div>
+                        <div class="log-item-row">
+                            <div class="log-item-content"
+                                v-text='"车\xa0\xa0\xa0\xa0\xa0\xa0\xa0号:\xa0\xa0" +item.vvehicle'>
+                            </div>
+                        </div>
+                        <div class="log-item-row">
+                            <div class="log-item-content" v-text='"物料品种:\xa0\xa0" +item.materialname'>
+                            </div>
+                        </div>
+                        <div class="log-item-row">
+                            <div class="log-item-content" v-text='"验收时间:\xa0\xa0" +item.ysdate'>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-id" v-text="index+1"></div>
+                    <div class="item-detail-tag">详情</div>
+                </div>
+                <div id="spinner" :class="(spinning ? ('spinner spinning') : ('spinner'))"
+                    v-if="(logList.length!=0) && endFlag && isLoading" v-text="loadText" @click="loadMore()"></div>
+            </div>
+        </div>
+
+        <!--起始日期下拉选择控件-->
+        <mt-datetime-picker ref="picker-date-begin" type="date" :visible-item-count="5" year-format="{value}年"
+            month-format="{value}月" date-format="{value}日" @confirm="handleDateConfirm('begin',$event)"
+            v-model="beignDatePickerValue"></mt-datetime-picker>
+
+        <!--结束下拉选择控件-->
+        <mt-datetime-picker ref="picker-date-stop" type="date" :visible-item-count="5" year-format="{value}年"
+            month-format="{value}月" date-format="{value}日" @confirm="handleDateConfirm('stop',$event)"
+            v-model="stopDatePickerValue"></mt-datetime-picker>
+    </div>
+    </div>
+</body>
+
+</html>

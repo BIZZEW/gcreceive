@@ -1,0 +1,36 @@
+.section-title {
+    height: 50px;
+    font-size: 17px;
+    line-height: 50px;
+    width: 100%;
+    text-align: center;
+    background: #4086ec;
+    color: white;
+    margin: 30px 0 0 0;
+    border-bottom: 1px solid #fafafa;
+    font-weight: bold;
+}
+
+.item-id {
+    right: 1.5%;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 20px;
+}
+
+.ultra-list-item:active {
+    background: white !important;
+}
+
+@media only screen and (min-width: 600px) {
+    .ultra-item .ultra-label {
+        font-size: 22px;
+    }
+    .ultra-item input, .ultra-item textarea {
+        font-size: 22px;
+    }
+    .ultra-bottom-btn {
+        font-size: 22px;
+    }
+}

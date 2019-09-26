@@ -1,0 +1,72 @@
+<!--by ZHUHY-->
+<!DOCTYPE html>
+<html>
+		<head>
+				<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+				<meta charset="UTF-8">
+				<title></title>
+				<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+				<link rel="stylesheet" type="text/css" href="../../css/islider.css">
+				<link rel="stylesheet" type="text/css" href="../../css/mintui.css">
+				<link type="text/css" rel="stylesheet" href="../util/iconfont.css">
+				<link rel="stylesheet" href="../util/util.css" />
+				<link rel="stylesheet" href="menu.css"/>
+
+				<script type="text/javascript" src="../../js/summer.js"></script>
+				<script type="text/javascript" src="../../js/jquery.min.js"></script>
+				<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.ui.js"></script>
+				<script type="text/javascript" src="../../js/islider.js"></script>
+				<script type="text/javascript" src="../../js/vue.js"></script>
+				<script type="text/javascript" src="../util/util.js"></script>
+				<script type="text/javascript" src="../util/lang/lang.js" ></script>
+				<script type="text/javascript" src="../../js/her.min.js" ></script>
+				<script type="text/javascript" src="menu.js"></script>
+		</head>
+		<body>
+				<div class="loadingLayer"></div>
+				<div class="um-win" id="index" :class=dept>
+						<div class="um-header header-bg" >
+								<h3 class="title-color" v-text="deptShowName"></h3>
+								<div class="um-header-btns">
+										<div class="pulldown">
+												<div class="icon iconfont icon-plus pulldown-toggle"></div>
+												<div class="pulldown-menu">
+														<div class="menu-item ultra-list-item" @click="exitApp()">
+																<div class="icon iconfont icon-logout"></div>
+																{{langFunk('exitApp')}}
+														</div>
+														<div class="menu-item ultra-list-item" @click="goSettings()">
+																<div class="icon iconfont icon-settings"></div>
+																{{langFunk('settings')}}
+														</div>
+												</div>
+										</div>
+								</div>
+						</div>
+						<div class="um-content bg">
+								<div class="um-row section-wrapper">
+										<div class="section-shadow"></div>
+										<div class="section-dpt" v-text="usrname"></div>
+										<i class="icon iconfont icon-portrait"></i>
+										<div id="iSlider-wrapper" class="iSlider-wrapper"></div>
+								</div>
+
+								<div class="ultra-mask"></div>
+
+								<div class="um-grid">
+										<div class="um-listview-wrap" id="listview">
+												<ul class="tile-ul">
+														<li class="tile-li" v-for="(item, index) in modules">
+																<div class="tile-inner">
+																		<a @touchstart="tapHold(index)" @touchmove="moveTapHold(index)" @touchend="cancelTapHold(index)"> <i class="icon iconfont" :class="'icon-'+item.module_id"></i> <div class="tile-shadow"></div><p class="tile-title" v-text="item.module_title"></p></a>
+																</div>
+														</li>
+												</ul>
+										</div>
+								</div>
+
+								<input id="invisibleInput" type="text" style="visibility: none;z-index: 1000000;position: absolute;bottom: 0;left: 0;width: 0;height: 0;"/>
+						</div>
+				</div>
+		</body>
+</html>

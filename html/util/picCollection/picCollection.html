@@ -1,0 +1,49 @@
+<!--by zhuhy-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../../../css/iuapmobile.um.css"/>
+		<link rel="stylesheet" href="../../../css/mintui.css" />
+		<link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_861007_efmb9485d5j.css"/>
+		<link rel="stylesheet" href="../util.css"/>
+		<link rel="stylesheet" href="picCollection.css"/>
+
+		<script type="text/javascript" src="../../../js/summer.js" ></script>
+		<script type="text/javascript" src="../../../js/jquery.min.js" ></script>
+		<script type="text/javascript" src="../../../js/Frameworks/iuapmobile.frameworks.ui.js"></script>
+		<script type="text/javascript" src="../../../js/vue.js"></script>
+		<script type="text/javascript" src="../../../js/mintui.js"></script>
+		<script type="text/javascript" src="../util.js"></script>
+		<script type="text/javascript" src="picCollection.js"></script>
+	</head>
+	<body>
+		<div class="um-win" id="index">
+			<div class="um-header header-bg">
+				<a href="#" class="um-back" @click="goback"></a>
+				<h3 class="title-color">照片上传</h3>
+				<div class="um-header-btns">
+					<a href="#" class="savebtn" @click="saveForm"></a>
+				</div>
+			</div>
+
+			<div class="um-content">
+				<div class="collection" id="listview">
+					<div class="itemWrapper" v-for="(item, index) in picPaths">
+						<div class="itemPic">
+							<img :src=item.path class="thumbnail" @click="picClick(index)" @load="picLoad(index)" :data-index=index>
+						</div>
+						<i class="icon iconfont icon-close" @click="picClose(index)"></i>
+					</div>
+					<div class="itemWrapper addPic" @click="addPic" v-if="picPaths.length < amountLimit">
+						<div class="addMore">
+							<i class="icon iconfont icon-addMore" @click="picClose(index)"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

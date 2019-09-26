@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+    <link rel="stylesheet" href="../../css/mintui.css" />
+    <link type="text/css" rel="stylesheet" href="../util/iconfont.css">
+    <link rel="stylesheet" href="../util/util.css">
+    <link rel="stylesheet" href="login.css">
+
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/summer.js"></script>
+    <script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.ui.js"></script>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+    <script type="text/javascript" src="../../js/mintui.js"></script>
+    <script type="text/javascript" src="../util/util.js"></script>
+    <script type="text/javascript" src="../util/lang/lang.js"></script>
+    <script type="text/javascript" src="../../js/her.min.js"></script>
+    <script type="text/javascript" src="login.js"></script>
+</head>
+
+<body>
+    <div class="loadingLayer"></div>
+    <div class="um-win" id="index" v-cloak>
+        <div class="login-mask"></div>
+        <div id="main" class="um-content p15 um-box-center um-row">
+            <img class='title-pic' src="../../img/GClogo.png" v-if="!inputStatus" />
+            <div class="login-panel" v-if="loginStatus==0">
+                <!-- <div class="ultra-tab-bar">
+                    <div class="ultra-tab left" :class="lang==1?'active':''" @click="lang=1">
+                        中&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;文
+                    </div>
+                    <div class="ultra-tab right" :class="lang==1?'':'active'" @click="lang=0">
+                        ENGLISH
+                    </div>
+                </div> -->
+                <div class="login-form">
+                    <!-- <div class="panel-title" v-text="langFunk('redLionSaleMS')"></div> -->
+                    <div class="panel-title">收货管理系统</div>
+
+                    <div class="um-label um-box-justify">
+                        <div class="label-title" v-text="langFunk('usernameLabel')" @click="secretDoor2(3)"></div>
+                        <div class="label-content">
+                            <input id="usrname" type="text" v-model="usrname" placeholder="" disabled=""
+                                @click="selectUsrname()" />
+
+                            <div class="pen-outer">
+                                <div class="pulldown">
+                                    <div class="pulldown-toggle pulldown-toggle-round">
+                                        <div class="lines"></div>
+                                    </div>
+                                    <div class="pulldown-menu">
+                                        <div class="userList">
+                                            <div class="user-item ultra-list-item" @click="userItemClick(index)"
+                                                v-for="(item, index) in userList">
+                                                <div class="user-item-inner" v-text="item.username"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="um-label um-box-justify">
+                        <div class="label-title" v-text="langFunk('passwordLabel')"></div>
+                        <div class="label-content">
+                            <input id="password" :type="showPD ? 'text' : 'password'" v-model="password"
+                                placeholder=" " />
+                            <div :class=" 'icon iconfont icon-' + ((showPD) ? 'eye' : 'closeye') "
+                                @touchstart="showPD= true" @touchend="showPD= false" @touchmove="showPD= false"></div>
+                        </div>
+                    </div>
+
+                    <div class="um-label um-box-justify" v-if="serverShow2">
+                        <div class="label-title">
+                            请求地址
+                        </div>
+                        <div class="label-content">
+                            <input id="loginip" type="text" v-model="loginIP" placeholder="请在此输入请求地址"
+                                style="width:100%; font-size: 16px; margin-left: 0px;" />
+                        </div>
+                    </div>
+
+                    <div class="remeberPD">
+                        {{langFunk('remeberPDLabel')}}
+                        <input class="remember-checkbox" type="checkbox" v-model="remeberPD">
+                    </div>
+
+                    <!-- <div class="btn-group">
+                        <div class="ultra-btn ip-btn left" @click="coWindowToggle=true" v-if="serverShow">
+                            <div class="icon iconfont icon-ip"></div>
+                            {{langFunk('serverBtnText')}}
+                        </div> -->
+                    <div :class=" 'ultra-btn login-btn' +( (serverShow) ? ' right' : '' ) " @click="login()">
+                        <div class="icon iconfont icon-login"></div>
+                        {{langFunk('loginBtnText')}}
+                    </div>
+                    <!-- </div> -->
+                </div>
+            </div>
+            <!-- <div class="WindowWrapper" v-if="coWindowToggle">
+                <div class="ipWindow">
+                    {{langFunk('coInputGuideText')}}
+                    <div class="inputWrapper">
+                        <input v-model="coInput" type="text" :placeholder="langFunk('coInputHint')" class="coInput" @focus="coInputGetFocus()" />
+                        <div class="icon iconfont icon-close" @click="coInputReset"></div>
+                        <div class="coList pen-outer" v-if="coList.length>0">
+                            <div class="pulldown">
+                                <div class="pulldown-toggle pulldown-toggle-round">
+                                    <div class="lines"></div>
+                                </div>
+                                <div class="pulldown-menu">
+                                    <div class="companyList">
+                                        <div class="co-item ultra-list-item" @click="coItemClick(index)" v-for="(item, index) in coList">
+                                            <div class="co-item-inner" v-text="item.def2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <div class="ultra-btn ip-btn left" @click="coWindowConfirm" v-text="langFunk('confirmBtntext')"></div>
+                        <div class="ultra-btn ip-btn right" @click="coWindowCancel" v-text="langFunk('cancelBtntext')"></div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</body>
+
+</html>
+
+<!--<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" href="../../css/iuapmobile.um.css">
+<link rel="stylesheet" href="../../css/mintui.css" />
+<link type="text/css" rel="stylesheet" href="../util/iconfont.css">
+<link rel="stylesheet" href="../util/util.css">
+<link rel="stylesheet" href="login.css">
+
+<script type="text/javascript" src="../../js/jquery.min.js" ></script>
+<script type="text/javascript" src="../../js/summer.js" ></script>
+<script type="text/javascript" src="../../js/Frameworks/iuapmobile.frameworks.ui.js" ></script>
+<script type="text/javascript" src="../../js/vue.js"></script>
+<script type="text/javascript" src="../../js/mintui.js"></script>
+<script type="text/javascript" src="../util/util.js" ></script>
+<script type="text/javascript" src="../util/lang/lang.js" ></script>
+<script type="text/javascript" src="../../js/her.min.js" ></script>
+<script type="text/javascript" src="login.js"></script>
+</head>
+<body>
+<div class="loadingLayer"></div>
+<div class="um-win" id="index">
+<div class="login-mask"></div>
+<div id="main" class="um-content p15 um-box-center um-row">
+<div class="login-panel" v-if="loginStatus==0">
+<div class="ultra-tab-bar">
+<div class="ultra-tab left" :class="lang==1?'active':''" @click="lang=1">
+中&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;文
+</div>
+<div class="ultra-tab right" :class="lang==1?'':'active'" @click="lang=0">
+ENGLISH
+</div>
+</div>
+<div class="login-form">
+<div class="panel-title" @click="secretDoor(3)" v-text="langFunk('redLionSaleMS')"></div>
+
+<div class="um-label um-box-justify">
+<div class="label-title" v-text="langFunk('usernameLabel')"></div>
+<div class="label-content">
+<input id="usrname" type="text" v-model="usrname" placeholder="" disabled="" @click="selectUsrname()"/>
+
+<div class="pen-outer">
+<div class="pulldown">
+<div class="pulldown-toggle pulldown-toggle-round">
+<div class="lines"></div>
+</div>
+<div class="pulldown-menu">
+<div class="userList">
+<div class="user-item ultra-list-item" @click="userItemClick(index)" v-for="(item, index) in userList">
+<div class="user-item-inner" v-text="item.username"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="um-label um-box-justify">
+<div class="label-title" v-text="langFunk('passwordLabel')"></div>
+<div class="label-content">
+<input id="password" :type="showPD ? 'text' : 'password'" v-model="password" placeholder=" "/>
+<div :class=" 'icon iconfont icon-' + ((showPD) ? 'eye' : 'closeye') " @touchstart="showPD= true" @touchend="showPD= false" @touchmove="showPD= false"></div>
+</div>
+</div>
+
+<div class="remeberPD">
+{{langFunk('remeberPDLabel')}}
+<input class="remember-checkbox" type="checkbox" v-model="remeberPD">
+</div>
+
+<div class="btn-group">
+<div class="ultra-btn ip-btn left" @click="ipWIndowToggle=true" v-if="serverShow">
+<div class="icon iconfont icon-ip"></div>
+{{langFunk('serverBtnText')}}
+</div>
+<div :class=" 'ultra-btn login-btn' +( (serverShow) ? ' right' : '' ) " @click="login()">
+<div class="icon iconfont icon-login"></div>
+{{langFunk('loginBtnText')}}
+</div>
+</div>
+</div>
+</div>
+<div class="WindowWrapper" v-if="ipWIndowToggle">
+<div class="ipWindow">
+{{langFunk('ipInputGuideText')}}
+<div class="inputWrapper">
+<input  v-model="ipLocationInput" type="text" placeholder=" " class="ipLocationInput"/>
+<div class="icon iconfont icon-close" @click="ipLocationInput=''"></div>
+</div>
+<div class="btn-group">
+<div class="ultra-btn ip-btn left" @click="ipWIndowToggle=false;ipLocation=ipLocationInput" v-text="langFunk('confirmBtntext')"></div>
+<div class="ultra-btn ip-btn right" @click="ipWIndowToggle=false;ipLocationInput=ipLocation" v-text="langFunk('cancelBtntext')"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>-->

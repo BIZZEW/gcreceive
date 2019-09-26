@@ -1,0 +1,17 @@
+.info-item .info-middle {
+	text-align: left;
+	color: #383838;
+}
+
+.ultra-list-item {
+	border-bottom: none;
+}
+
+.ultra-list-item .icon-unchecked {
+	font-size: 28px;
+	text-align: right;
+}
+
+.icon-unchecked.unchecked {
+	color: #d8d8d8;
+}

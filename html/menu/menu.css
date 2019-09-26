@@ -1,0 +1,189 @@
+/*收货样式*/
+
+.receive li:nth-child(3n+1) .tile-shadow {
+	background: rgba(35, 70, 160, 1);
+}
+
+.receive li:nth-child(3n+2) .tile-shadow {
+	background: rgba(35, 154, 163, 1);
+}
+
+.receive li:nth-child(3n+3) .tile-shadow {
+	background: rgba(158, 163, 35, 1);
+}
+
+/*销售样式*/
+
+.sale li:nth-child(3n+1) .tile-shadow {
+	background: rgba(35, 70, 160, 1);
+}
+
+.sale li:nth-child(3n+2) .tile-shadow {
+	background: rgba(35, 154, 163, 1);
+}
+
+.sale li:nth-child(3n+3) .tile-shadow {
+	background: rgba(158, 163, 35, 1);
+}
+
+/*采购样式*/
+
+.procure li:nth-child(3n+1) .tile-shadow {
+	background: rgba(40, 35, 160, 1);
+}
+
+.procure li:nth-child(3n+2) .tile-shadow {
+	background: rgba(30, 115, 210, 1);
+}
+
+.procure li:nth-child(3n+3) .tile-shadow {
+	background: rgba(35, 163, 107, 1);
+}
+
+.ultra-mask {
+	width: 100%;
+	height: 146px;
+	background: #e3e3e3;
+	position: fixed;
+	z-index: 4;
+	box-shadow: 0px 10px 15px 10px #e3e3e3;
+}
+
+.um-header {
+	z-index: 10;
+}
+
+.um-modal {
+	z-index: 20;
+}
+
+.um-header-btns {
+	margin-right: 10px;
+}
+
+/*弹出菜单样式*/
+
+.um-header-btns .icon-plus {
+	color: white;
+	font-size: 18px;
+	pointer-events: all;
+	opacity: 1;
+	width: 100%;
+}
+
+.um-header .um-header-btns .icon:hover {
+	opacity: 1;
+}
+
+.pulldown {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+/* Styles for our pulldown menus */
+
+.pulldown {
+	position: relative;
+}
+
+.pulldown .pulldown-toggle {
+	cursor: pointer;
+	transition: 0.1s;
+}
+
+.pulldown .pulldown-menu {
+	height: 18%;
+	box-shadow: 0px 5px 11px rgba(0, 0, 0, 0.49);
+	right: 3% !important;
+	display: none;
+	z-index: 100;
+	right: 30%;
+	position: fixed;
+	top: 55px !important;
+	bottom: 0px !important;
+	border-radius: 0;
+	background: white;
+	color: #292929;
+}
+
+.pulldown .pulldown-menu .menu-item {
+	height: 50%;
+	line-height: 50%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 0 15px;
+}
+
+.pulldown .pulldown-menu .menu-item .iconfont {
+	font-size: 28px;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	margin-right: 25px;
+}
+
+.pulldown-right .pulldown-menu {
+	left: auto;
+	right: 0px;
+}
+
+.pulldown-toggle.open+.pulldown-menu {
+	display: block;
+	-webkit-animation-name: openPullDown;
+	animation-name: openPullDown;
+	-webkit-animation-duration: 100ms;
+	animation-duration: 100ms;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-webkit-transform-origin: right top;
+	transform-origin: right top;
+}
+
+/* 加号动画 */
+
+.pulldown-toggle.open {
+	transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	opacity: .3 !important;
+}
+
+.pulldown-toggle.open+.pulldown-menu {
+	-webkit-animation-name: openPullDown;
+	animation-name: openPullDown;
+	-webkit-animation-duration: 50ms;
+	animation-duration: 50ms;
+}
+
+/*Grow from origin*/
+
+@-webkit-keyframes openPullDown {
+	0% {
+		opacity: 0;
+		-webkit-transform: scale(.7);
+		transform: scale(.7);
+		transform-origin: top right;
+		-webkit-transform-origin: top right;
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+}
+
+@keyframes openPullDown {
+	0% {
+		opacity: 0;
+		-webkit-transform: scale(.7);
+		-ms-transform: scale(.7);
+		transform: scale(.7);
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: scale(1);
+		-ms-transform: scale(1);
+		transform: scale(1);
+	}
+}

@@ -1,0 +1,44 @@
+.ultra-btn.two-in-row {
+    position: relative;
+    display: inline-flex;
+    align-content: center;
+    justify-content: center;
+    padding: 3px !important;
+}
+
+.item-id {
+    left: 1.5%;
+}
+
+@media only screen and (min-width: 600px) {
+    .ultra-item .ultra-label {
+        font-size: 22px;
+    }
+    .ultra-item input, .ultra-item textarea {
+        font-size: 22px;
+    }
+    .ultra-bottom-btn {
+        font-size: 22px;
+    }
+    .ultra-btn {
+        font-size: 22px;
+    }
+    .log-item-content {
+        font-size: 22px;
+    }
+    .item-id {
+        width: 25px;
+        height: 25px;
+        font-size: 20px;
+        line-height: 25px;
+    }
+    .iconfont.icon-arrowright {
+        font-size: 26px;
+    }
+    .ultra-scroll-list {
+        margin: 255px 0 0 0;
+    }
+    .ultra-scroll-list .ultra-list-item {
+        font-size: 22px;
+    }
+}

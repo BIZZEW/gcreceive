@@ -1,0 +1,12 @@
+.info-item .settingIcon {
+	font-size: 30px;
+}
+
+.info-item:active {
+	opacity: .7;
+}
+
+.info-item .info-middle {
+	color: #3c3c3c;
+	font-size: 17px;
+}

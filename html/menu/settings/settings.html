@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+		<head>
+				<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+				<meta charset="UTF-8">
+				<title></title>
+				<link rel="stylesheet" href="../../../css/iuapmobile.um.css">
+				<link rel="stylesheet" type="text/css" href="../../../css/islider.css">
+				<link rel="stylesheet" type="text/css" href="../../../css/mintui.css">
+				<link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_913882_4512ulov6ld.css">
+				<link rel="stylesheet" href="../../util/util.css" />
+				<link rel="stylesheet" href="settings.css"/>
+
+				<script type="text/javascript" src="../../../js/summer.js"></script>
+				<script type="text/javascript" src="../../../js/jquery.min.js"></script>
+				<script type="text/javascript" src="../../../js/Frameworks/iuapmobile.frameworks.ui.js"></script>
+				<script type="text/javascript" src="../../../js/islider.js"></script>
+				<script type="text/javascript" src="../../../js/vue.js"></script>
+				<script type="text/javascript" src="../../util/util.js"></script>
+				<script type="text/javascript" src="../../util/lang/lang.js" ></script>
+				<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r77/three.min.js"></script>
+				<script type="text/javascript" src="../../../js/her.min.js" ></script>
+				<script type="text/javascript" src="settings.js"></script>
+		</head>
+		<body>
+				<div class="loadingLayer"></div>
+				<div class="um-win" id="index">
+						<div class="um-header header-bg">
+								<a href="#" class="um-back" @click="goback"></a>
+								<h3 class="title-color" v-text="langFunk('settings')"></h3>
+						</div>
+
+						<div class="um-content">
+								<div class="um-label um-box-justify info-item" @click="settingJump('changePassword')">
+										<i class="icon iconfont settingIcon icon-changePassword"></i>
+										<div class="info-middle" v-text="langFunk('changePassword')"></div >
+										<i class="icon iconfont icon-arrowright"></i>
+								</div>
+								<div class="um-label um-box-justify info-item" @click="settingJump('setProductLine')">
+										<i class="icon iconfont settingIcon icon-setProductLine"></i>
+										<div class="info-middle" v-text="langFunk('setProductLine')"></div >
+										<i class="icon iconfont icon-arrowright"></i>
+								</div>
+								<div class="um-label um-box-justify info-item" @click="settingJump('setLang')">
+										<i class="icon iconfont settingIcon icon-setLang"></i>
+										<div class="info-middle" v-text="langFunk('setLang')"></div >
+										<i class="icon iconfont icon-arrowright"></i>
+								</div>
+								<div class="um-label um-box-justify info-item" @click="settingJump('coNo')">
+										<i class="icon iconfont settingIcon icon-coNo"></i>
+										<div class="info-middle" v-text="langFunk('coNo')"></div >
+										<i class="icon iconfont icon-arrowright"></i>
+								</div>
+								<div class="um-label um-box-justify info-item" @click="settingJump('scanDevice')">
+										<i class="icon iconfont settingIcon icon-scanDevice"></i>
+										<div class="info-middle" v-text="langFunk('scanDevice')"></div >
+										<i class="icon iconfont icon-arrowright"></i>
+								</div>
+						</div>
+				</div>
+		</body>
+</html>
