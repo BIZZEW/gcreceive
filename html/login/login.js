@@ -59,7 +59,7 @@ function initPage() {
 
             //输入的搜索词
             coInput: "",
-            // userList: [{ username: "5555" }, { username: "5555" }, { username: "5555" }, ],
+            // userList: [{ username: "5555" }, { username: "5555" }, { username: "5555" }, { username: "5555" }, { username: "5555" }, ],
             userList: [],
             coList: [],
             availableModules: "",

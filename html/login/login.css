@@ -11,6 +11,7 @@
 
 body {
 	overflow: hidden;
+	height: 100%;
 }
 
 .um-label .label-title {
@@ -18,9 +19,9 @@ body {
 }
 
 .title-pic {
-    position: absolute;
-    top: 5%;
-    width: 60%;
+	position: absolute;
+	top: 5%;
+	width: 60%;
 }
 
 .btn-group {
@@ -65,13 +66,14 @@ body {
 .userList, .companyList {
 	display: inline-block;
 	width: 100%;
-	max-height: 40% !important;
+	max-height: 60% !important;
 	overflow-y: scroll;
 	right: 0 !important;
 	z-index: 100;
 	left: 30%;
 	border-radius: 0;
 	box-shadow: 0px 5px 11px rgba(0, 0, 0, 0.49);
+	background: white;
 }
 
 .user-item {}
@@ -297,8 +299,7 @@ input:focus, textarea:focus, select:focus {
 
 .pulldown .pulldown-menu {
 	width: 60% !important;
-	/* height: fit-content; */
-	height: 100%;
+	/* height: 100%; */
 	right: 0 !important;
 	display: none;
 	z-index: 100;
