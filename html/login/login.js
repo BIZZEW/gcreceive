@@ -47,7 +47,7 @@ function initPage() {
             //存储的公司信息
             loginCompany: "",
             loginCode: "",
-            loginIP: "http://10.20.20.12:90",
+            loginIP: "",
             loginPk: "",
 
             //选中的公司信息
