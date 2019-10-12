@@ -160,6 +160,14 @@ function initPage() {
 					content: imgPath + "receive/bg1.jpg"
 				}, {
 					content: imgPath + "receive/bg2.jpg"
+				}, {
+					content: imgPath + "receive/bg3.jpg"
+				}, {
+					content: imgPath + "receive/bg4.jpg"
+				}, {
+					content: imgPath + "receive/bg5.jpg"
+				}, {
+					content: imgPath + "receive/bg6.jpg"
 				}];
 				var islider = new iSlider({
 					type: 'pic',
@@ -230,9 +238,9 @@ function initPage() {
 					"duration": 3000
 				});
 			},
-            formSubmitted: function (param) {
-                roads.alertAIO("表单数据提交成功！");
-            }
+			formSubmitted: function (param) {
+				roads.alertAIO("表单数据提交成功！");
+			}
 		},
 		mounted: function () {
 			// 加载数据...
