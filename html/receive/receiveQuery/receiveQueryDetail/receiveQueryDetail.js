@@ -49,6 +49,8 @@ function initPage() {
             deduction: "",
             supplierNetWeight: "",
             auditorCode: "",
+
+            containerNo: "",
         },
         methods: {
             fillPage0: function () {
@@ -67,6 +69,8 @@ function initPage() {
                 vue.deduction = parsedData.nabatebright;
                 vue.supplierNetWeight = parsedData.gfjz;
                 vue.auditor = parsedData.usercode;
+
+                vue.containerNo = parsedData.containerno;
             },
             // 返回
             goback: function () {

@@ -105,6 +105,7 @@ window.roads = (function (win, r) {
                 usercode: usrcode,
                 sessionid: sessionId
             };
+            // alert("checkLogin param: " + JSON.stringify(param));
             var data2 = "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ipur='http://webservice.app.itf.nc/IPurchaseAppWebService'><soapenv:Header/><soapenv:Body><ipur:checkLoginStatus><string>" + JSON.stringify(param) + "</string></ipur:checkLoginStatus></soapenv:Body></soapenv:Envelope>";
             $.ajax({
                 url: url2,
@@ -118,7 +119,8 @@ window.roads = (function (win, r) {
                 },
                 success: function (ret) {
                     var result = JSON.parse($(ret).find("return").html());
-                    if (parseInt(result.status))
+                    // alert("checkLogin result: " + (parseInt(result.status) > 0));
+                    if (parseInt(result.status) > 0)
                         r.ajaxKernel(url, data, successCallback, functionName);
                     else {
                         her.loadedSpring();

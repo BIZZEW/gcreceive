@@ -50,6 +50,8 @@ function initPage() {
             supplierNetWeight: "",
             auditorCode: "",
 
+            containerNo: "",
+
             nfcReading: "请在确保本设备支持且开启NFC功能的情况下将卡片置于设备读卡区域。"
         },
         methods: {
@@ -106,6 +108,8 @@ function initPage() {
                             vue.deduction = parsedData.nabatebright;
                             vue.supplierNetWeight = parsedData.gfjz;
                             vue.auditor = parsedData.usercode;
+
+                            vue.containerNo = parsedData.containerno;
                             break;
                         case 2:
                             roads.alertAIO(result.message);
@@ -151,6 +155,8 @@ function initPage() {
                             vue.deduction = parsedData.nabatebright;
                             vue.supplierNetWeight = parsedData.gfjz;
                             vue.auditor = parsedData.usercode;
+
+                            vue.containerNo = parsedData.containerno;
                             break;
                         case 2:
                             roads.alertAIO(result.message);
@@ -223,7 +229,8 @@ function initPage() {
                         "usercode": vue.usercode,
                         "ysyj": vue.auditionComment,
                         "gfjz": vue.supplierNetWeight,
-                        "nabatebright": vue.deduction
+                        "nabatebright": vue.deduction,
+                        "containerno": vue.containerNo,
                     };
 
                     var soapXML = "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ipur='http://webservice.app.itf.nc/IPurchaseAppWebService'><soapenv:Header/><soapenv:Body><ipur:updatePoundbill><string>" + JSON.stringify(param) + "</string></ipur:updatePoundbill></soapenv:Body></soapenv:Envelope>";
