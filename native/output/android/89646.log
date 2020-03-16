@@ -1,44 +1,44 @@
 
-2020-03-09 21:59:34:
+2020-03-16 10:48:07:
 构建服务器收到用户[YHT-5139-53171536289300657]构建请求,开始排队构建...
 
-2020-03-09 21:59:34:
+2020-03-16 10:48:07:
 排队完成！开始构建app...
 
-2020-03-09 21:59:34:
+2020-03-16 10:48:07:
 获取到用户配置的系统默认的插件：[cordova-plugin-compat]...
 
-2020-03-09 21:59:34:
+2020-03-16 10:48:07:
 获取到用户配置的构建系统cordova库插件：[summer-plugin-twodimensioncode]...
 
-2020-03-09 21:59:34:
+2020-03-16 10:48:07:
 获取到用户配置的系统默认的插件：[cordova-plugin-http]...
 
-2020-03-09 21:59:34:
+2020-03-16 10:48:07:
 获取到用户配置的系统默认的插件：[cordova-plugin-camera]...
 
-2020-03-09 21:59:34:
+2020-03-16 10:48:07:
 获取到用户配置的系统默认的插件：[cordova-plugin-file]...
 
-2020-03-09 21:59:34:
+2020-03-16 10:48:07:
 获取到用户配置的构建系统cordova库插件：[summer-plugin-nfc]...
 
-2020-03-09 21:59:34:
-用户没有配置默认证书，将使用系统默认证书...
+2020-03-16 10:48:07:
+用户有配置默认证书，将使用用户默认证书...
 
-2020-03-09 21:59:34:
-获取到构建使用的证书别名：[ump]...
+2020-03-16 10:48:07:
+获取到构建使用的证书别名：[my-key-alias]...
 
 createCordovaProject:
      [echo] === start create cordova project ===
-     [echo] /usr/local/bin/cordova create /Users/ispace/BuildServer/umpfiles/userfiles/5519/88977/project/goldencircle
+     [echo] /usr/local/bin/cordova create /Users/ispace/BuildServer/umpfiles/userfiles/5519/89646/project/goldencircle
      [echo] 			com.yonyou.goldencircle 金圆收货管理系统
      [echo] 		
      [exec] Creating a new cordova project.
      [echo] === end create cordova project ===
 
 BUILD SUCCESSFUL
-Total time: 1 second
+Total time: 2 seconds
 
 addPlatform:
      [echo] add platform
@@ -62,13 +62,13 @@ addPlatform:
      [echo] === end add platform===
 
 BUILD SUCCESSFUL
-Total time: 1 minute 18 seconds
+Total time: 1 minute 19 seconds
 
 initCordovaPlugins:
      [echo] add plugin in cordovaproject
-     [echo]  start add plugin /Users/ispace/BuildServer/umpfiles/userfiles/5519/88977/input/summer-plugin-android-template 
+     [echo]  start add plugin /Users/ispace/BuildServer/umpfiles/userfiles/5519/89646/input/summer-plugin-android-template 
      [exec] Installing "summer-plugin-android-template" for android
-     [echo]  end add plugin /Users/ispace/BuildServer/umpfiles/userfiles/5519/88977/input/summer-plugin-android-template 
+     [echo]  end add plugin /Users/ispace/BuildServer/umpfiles/userfiles/5519/89646/input/summer-plugin-android-template 
      [echo]  start add plugin /Users/ispace/BuildServer/umpfiles/cordovaLibs/plugins/system/common/summer-plugin-apm 
      [exec] Installing "summer-plugin-apm" for android
      [echo]  end add plugin /Users/ispace/BuildServer/umpfiles/cordovaLibs/plugins/system/common/summer-plugin-apm 
@@ -133,11 +133,11 @@ Total time: 20 seconds
 buildAndroid:
      [echo] Start Build Android App
      [echo] /usr/local/bin/cordova build android --release -- --keystore /Users/dongzhk/BuildServer/umpfiles/profile/ump.keystore --alias ump --storePassword 123456 --password umpump
-     [echo] Build base Dir /Users/ispace/BuildServer/umpfiles/userfiles/5519/88977/project/goldencircle
+     [echo] Build base Dir /Users/ispace/BuildServer/umpfiles/userfiles/5519/89646/project/goldencircle
      [exec] ANDROID_HOME=/Applications/android-sdk-macosx-r16
      [exec] JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_73.jdk/Contents/Home
-     [exec] Reading build config file: /Users/ispace/BuildServer/umpfiles/userfiles/5519/88977/project/goldencircle/build.json
-     [exec] Reading the keystore from: /Users/ispace/BuildServer/umpfiles/profile/32/ump_20170619164555.keystore
+     [exec] Reading build config file: /Users/ispace/BuildServer/umpfiles/userfiles/5519/89646/project/goldencircle/build.json
+     [exec] Reading the keystore from: /Users/ispace/BuildServer/umpfiles/profile/5519/my-release-key_20200311115730.keystore
      [exec] Subproject Path: CordovaLib
      [exec] Parallel execution is an incubating feature.
      [exec] Incremental java compilation is an incubating feature.
@@ -145,14 +145,13 @@ buildAndroid:
      [exec] :CordovaLib:preBuild
      [exec] :preBuild UP-TO-DATE
      [exec] :CordovaLib:preBuild UP-TO-DATE
-     [exec] :preReleaseBuild
-     [exec] :CordovaLib:preReleaseBuild
      [exec] :preReleaseBuild UP-TO-DATE
-     [exec] :CordovaLib:preReleaseBuild UP-TO-DATE
+     [exec] :CordovaLib:preReleaseBuild
      [exec] :checkReleaseManifest
+     [exec] :CordovaLib:preReleaseBuild UP-TO-DATE
      [exec] :CordovaLib:checkReleaseManifest
-     [exec] :CordovaLib:prepareReleaseDependencies
      [exec] :preDebugBuild UP-TO-DATE
+     [exec] :CordovaLib:prepareReleaseDependencies
      [exec] :preDebugAndroidTestBuild UP-TO-DATE
      [exec] :CordovaLib:compileReleaseAidl
      [exec] :generateReleaseBuildConfig
@@ -163,14 +162,15 @@ buildAndroid:
      [exec] :CordovaLib:copyReleaseLint UP-TO-DATE
      [exec] :CordovaLib:mergeReleaseShaders
      [exec] :compileReleaseNdk UP-TO-DATE
-     [exec] :mergeReleaseShaders
      [exec] :CordovaLib:compileReleaseShaders
+     [exec] :mergeReleaseShaders
      [exec] :CordovaLib:generateReleaseAssets
      [exec] :CordovaLib:mergeReleaseAssets
      [exec] :compileReleaseShaders
      [exec] :generateReleaseAssets
      [exec] :processReleaseJavaRes
      [exec] :CordovaLib:mergeReleaseProguardFiles
+     [exec] :CordovaLib:packageReleaseRenderscript
      [exec] :processReleaseJavaRes UP-TO-DATE
      [exec] :validateSigningRelease
      [exec] :CordovaLib:packageReleaseRenderscript UP-TO-DATE
@@ -239,9 +239,9 @@ buildAndroid:
      [exec] :generateReleaseResources
      [exec] :mergeReleaseResources
      [exec] :processReleaseManifest
-     [exec] [:yyemmsdk:] /Users/ispace/BuildServer/umpfiles/userfiles/5519/88977/project/goldencircle/platforms/android/build/intermediates/exploded-aar/yyemmsdk/AndroidManifest.xml:30:5-79 Warning:
+     [exec] [:yyemmsdk:] /Users/ispace/BuildServer/umpfiles/userfiles/5519/89646/project/goldencircle/platforms/android/build/intermediates/exploded-aar/yyemmsdk/AndroidManifest.xml:30:5-79 Warning:
      [exec] 	Element uses-permission#android.permission.ACCESS_FINE_LOCATION at [:yyemmsdk:] AndroidManifest.xml:30:5-79 duplicated with element declared at [:yyemmsdk:] AndroidManifest.xml:27:5-79
-     [exec] /Users/ispace/BuildServer/umpfiles/userfiles/5519/88977/project/goldencircle/platforms/android/AndroidManifest.xml:6:5-27:19 Warning:
+     [exec] /Users/ispace/BuildServer/umpfiles/userfiles/5519/89646/project/goldencircle/platforms/android/AndroidManifest.xml:6:5-27:19 Warning:
      [exec] 	application@android:allowBackup was tagged at AndroidManifest.xml:6 to replace other declarations but no other declaration present
      [exec] :processReleaseResources
      [exec] :generateReleaseSources
@@ -249,7 +249,7 @@ buildAndroid:
      [exec] :compileReleaseJavaWithJavac - is not incremental (e.g. outputs have changed, no previous execution, etc.).
      [exec] 注: 某些输入文件使用或覆盖了已过时的 API。
      [exec] 注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
-     [exec] 注: /Users/ispace/BuildServer/umpfiles/userfiles/5519/88977/project/goldencircle/platforms/android/src/org/apache/cordova/file/AssetFilesystem.java使用了未经检查或不安全的操作。
+     [exec] 注: /Users/ispace/BuildServer/umpfiles/userfiles/5519/89646/project/goldencircle/platforms/android/src/org/apache/cordova/file/AssetFilesystem.java使用了未经检查或不安全的操作。
      [exec] 注: 有关详细信息, 请使用 -Xlint:unchecked 重新编译。
      [exec] :compileReleaseSources
      [exec] :lintVitalRelease
@@ -257,7 +257,8 @@ buildAndroid:
      [exec] :transformClassesWithJarMergingForRelease
      [exec] :transformClassesWithMultidexlistForRelease
      [exec] :transformClassesWithDexForReleasewarning: Ignoring InnerClasses attribute for an anonymous inner class
-     [exec] (net.lingala.zip4j.util.ArchiveMaintainer$1) that doesn't come with an
+     [exec] (net.lingala.zip4j.unzip.Unzip$2) that doesn't come with a
+     [exec] :mergeReleaseJniLibFoldersn
      [exec] associated EnclosingMethod attribute. This class was probably produced by a
      [exec] compiler that did not target the modern .class file format. The recommended
      [exec] solution is to recompile the class from source, using an up-to-date compiler
@@ -273,7 +274,7 @@ buildAndroid:
      [exec] this warning is that reflective operations on this class will incorrectly
      [exec] indicate that it is *not* an inner class.
      [exec] warning: Ignoring InnerClasses attribute for an anonymous inner class
-     [exec] (net.lingala.zip4j.unzip.Unzip$2) that doesn't come with an
+     [exec] (net.lingala.zip4j.util.ArchiveMaintainer$1) that doesn't come with an
      [exec] associated EnclosingMethod attribute. This class was probably produced by a
      [exec] compiler that did not target the modern .class file format. The recommended
      [exec] solution is to recompile the class from source, using an up-to-date compiler
@@ -297,7 +298,6 @@ buildAndroid:
      [exec] this warning is that reflective operations on this class will incorrectly
      [exec] indicate that it is *not* an inner class.
      [exec] 
-     [exec] :mergeReleaseJniLibFolders
      [exec] :transformNative_libsWithMergeJniLibsForRelease
      [exec] :transformResourcesWithMergeJavaResForRelease
      [exec] :packageRelease
@@ -306,17 +306,17 @@ buildAndroid:
      [exec] 
      [exec] BUILD SUCCESSFUL
      [exec] 
-     [exec] Total time: 15.412 secs
+     [exec] Total time: 14.111 secs
      [exec] Built the following apk(s): 
-     [exec] 	/Users/ispace/BuildServer/umpfiles/userfiles/5519/88977/project/goldencircle/platforms/android/build/outputs/apk/android-release.apk
+     [exec] 	/Users/ispace/BuildServer/umpfiles/userfiles/5519/89646/project/goldencircle/platforms/android/build/outputs/apk/android-release.apk
      [echo] End Build Android App
      [echo] start move apk and asserts
-     [move] Moving 1 file to /Users/ispace/BuildServer/umpfiles/userfiles/5519/88977/output/install
-      [zip] Building zip: /Users/ispace/BuildServer/umpfiles/userfiles/5519/88977/output/install/goldencircle_assets.zip
+     [move] Moving 1 file to /Users/ispace/BuildServer/umpfiles/userfiles/5519/89646/output/install
+      [zip] Building zip: /Users/ispace/BuildServer/umpfiles/userfiles/5519/89646/output/install/goldencircle_assets.zip
      [echo] end move apk and asserts
      [echo] delete build dir add by dongzhk
-   [delete] Deleting directory /Users/ispace/BuildServer/umpfiles/userfiles/5519/88977/project/goldencircle/platforms/android/build
+   [delete] Deleting directory /Users/ispace/BuildServer/umpfiles/userfiles/5519/89646/project/goldencircle/platforms/android/build
      [echo] end delete build dir by dongzhk
 
 BUILD SUCCESSFUL
-Total time: 18 seconds
+Total time: 17 seconds
