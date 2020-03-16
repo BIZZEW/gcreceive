@@ -2,7 +2,7 @@
 
 <application> 
   <app_start>html/index.html</app_start>  
-  <app_name>金圆收货管理系统</app_name>  
+  <app_name>金圆收货</app_name>  
   <project_name>goldencircle</project_name>  
   <package_name>com.yonyou.goldencircle</package_name>  
   <frame_name>summer-um</frame_name>  
@@ -15,13 +15,13 @@
   <showLaunch>false</showLaunch>  
   <permission id="android.permission.INTERNET"/>  
   <statusBarStyle>light</statusBarStyle>  
-  <fullScreen>true</fullScreen>    
+  <fullScreen>true</fullScreen>  
   <statusBarAppearance>false</statusBarAppearance>  
-  <windowSoftInputMode>stateHidden|adjustPan</windowSoftInputMode>
+  <windowSoftInputMode>stateHidden|adjustPan</windowSoftInputMode>  
   <import id="cordova-plugin-compat" type="web" ref="cordova"/>  
-  <import id="summer-plugin-twodimensioncode" type="web" ref="cordova"/> 
+  <import id="summer-plugin-twodimensioncode" type="web" ref="cordova"/>  
   <import id="cordova-plugin-http" type="web" ref="cordova"/>  
-  <import id="cordova-plugin-camera" type="web" ref="cordova"/> 
+  <import id="cordova-plugin-camera" type="web" ref="cordova"/>  
   <import id="cordova-plugin-file" type="web" ref="cordova"/>  
   <import id="summer-plugin-nfc" type="web" ref="cordova"/> 
 </application>
