@@ -34,7 +34,7 @@ function initPage() {
 			//属于哪个部门
 			// dept: summer.pageParam.dept,
 			dept: "receive",
-			usrname: summer.pageParam.usrname,
+            usrname: summer.getStorage('usrname'),
 			availableModules: eval(summer.pageParam.availableModules),
 			//dept : "sale",
 			deptShowName: "",
