@@ -66,6 +66,16 @@ function initPage() {
                     { name: "其它", },
                 ]
             }],
+
+            // 图片上传
+            picNum: 0,
+            picPaths: [],
+
+            // 上传相关标志
+            sendCount: -1,
+            sendFlag: 0,
+            fd: new FormData(),
+            prefix: "",
         },
         methods: {
             // 返回
@@ -73,6 +83,32 @@ function initPage() {
                 roads.closeWin();
             },
             onValuesChange(picker, values) {
+            },
+            //前往图片总览页
+            goPicCollection: function () {
+                $("#goPicCollection").addClass("unclickable");
+
+                roads.openWin("util", "picCollection", "picCollection/picCollection.html", {
+                    ownerTag: 0,
+                    picPaths: this.picPaths,
+                    amountLimit: 1,
+                    module_id: this.module_id,
+                    module_title: this.module_title,
+                    // record_id: this.record_id,
+                    win_id: vue.module_id
+                });
+            },
+            clickable: function () {
+                $("#goPicCollection").removeClass("unclickable");
+            },
+            //从图片收集页返回
+            backfrCollection: function (jsonStr) {
+                this.clickable();
+
+                this.picPaths = jsonStr["picPaths"];
+                this.picNum = jsonStr["picPaths"].length;
+                vue.sendCount = -1;
+                $(".itemPic").empty();
             },
             confirmChangeCon: function () {
                 this.auditionComment = this.$refs.conPicker.getValues()[0].name;
@@ -257,46 +293,133 @@ function initPage() {
                     roads.alertAIO("请先获取磅单再提交或退货！");
                     return;
                 }
-                // if ((vue.driver == "") || (vue.plateNum == "") || (vue.planOrder == "") || (vue.pk_user == "") || (vue.pk_meamapply == "")) {
-                //     her.loaded();
-                //     roads.toastAIO("请先完整填选所有的字段再提交！", 3000, 1);
-                // } 
-                else {
-                    var param = {
-                        "pk_poundbill": vue.pkPoundbill,
-                        "usercode": vue.usercode,
-                        "ysyj": vue.auditionComment,
-                        "gfjz": vue.supplierNetWeight,
-                        "nabatebright": vue.deduction,
-                        "containerno": vue.containerNo,
-                        "isReturnGoods": returnFlag,
-                    };
+                // // if ((vue.driver == "") || (vue.plateNum == "") || (vue.planOrder == "") || (vue.pk_user == "") || (vue.pk_meamapply == "")) {
+                // //     her.loaded();
+                // //     roads.toastAIO("请先完整填选所有的字段再提交！", 3000, 1);
+                // // } 
+                else if (!summer.netAvailable()) {
+                    // 判断网络
+                    her.loadedSpring();
+                    roads.alertAIO("网络异常，请检查网络！");
+                    return false;
+                } else {
+                    vue.fd.append("pk_poundbill", vue.pkPoundbill);
+                    vue.fd.append("usercode", vue.usercode);
+                    vue.fd.append("ysyj", vue.auditionComment);
+                    vue.fd.append("gfjz", vue.supplierNetWeight);
+                    vue.fd.append("nabatebright", vue.deduction);
+                    vue.fd.append("containerno", vue.containerNo);
+                    vue.fd.append("isReturnGoods", returnFlag);
 
-                    var soapXML = "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ipur='http://webservice.app.itf.nc/IPurchaseAppWebService'><soapenv:Header/><soapenv:Body><ipur:updatePoundbill><string>" + JSON.stringify(param) + "</string></ipur:updatePoundbill></soapenv:Body></soapenv:Envelope>";
-                    roads.oldSkoolAjax(vue.loginIP + "/uapws/service/nc.itf.app.webservice.IPurchaseAppWebService/updatePoundbill", soapXML, function (data) {
-                        var result = JSON.parse($(data).find("return").html());
-                        switch (parseInt(result.status)) {
-                            case -1:
-                                roads.alertAIO(result.message);
-                                break;
-                            case 0:
-                                roads.alertAIO(result.message);
-                                break;
-                            case 1:
-                                summer.closeWin();
-                                roads.execScript("menu", "vue.formSubmitted", {
-                                    // "item_name": vue.item_name
-                                });
-                                break;
-                            case 2:
-                                roads.alertAIO(result.message);
-                                break;
-                            default:
-                                break;
-                        }
-                    });
+                    vue.uploadKernal();
                 }
             },
+            uploadKernal: function () {
+                vue.sendFlag = 1;
+                vue.sendCount = 0;
+
+                if (vue.picPaths && vue.picPaths.length && vue.picPaths.length > 0) {
+                    $.each(vue.picPaths, function (i, obj) {
+                        var img = new Image();
+                        img.pid = i;
+                        img.src = obj.path;
+                        img.onload = loadImage(img);
+                    })
+                }
+            },
+            // uploadRecords: function (returnFlag) {
+            //     if (vue.pkPoundbill == "") {
+            //         her.loadedSpring();
+            //         roads.alertAIO("请先获取磅单再提交或退货！");
+            //         return;
+            //     }
+            //     // if ((vue.driver == "") || (vue.plateNum == "") || (vue.planOrder == "") || (vue.pk_user == "") || (vue.pk_meamapply == "")) {
+            //     //     her.loaded();
+            //     //     roads.toastAIO("请先完整填选所有的字段再提交！", 3000, 1);
+            //     // } 
+            //     else {
+            //         var param = {
+            //             "pk_poundbill": vue.pkPoundbill,
+            //             "usercode": vue.usercode,
+            //             "ysyj": vue.auditionComment,
+            //             "gfjz": vue.supplierNetWeight,
+            //             "nabatebright": vue.deduction,
+            //             "containerno": vue.containerNo,
+            //             "isReturnGoods": returnFlag,
+            //         };
+
+            //         var soapXML = "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ipur='http://webservice.app.itf.nc/IPurchaseAppWebService'><soapenv:Header/><soapenv:Body><ipur:updatePoundbill><string>" + JSON.stringify(param) + "</string></ipur:updatePoundbill></soapenv:Body></soapenv:Envelope>";
+            //         roads.oldSkoolAjax(vue.loginIP + "/uapws/service/nc.itf.app.webservice.IPurchaseAppWebService/updatePoundbill", soapXML, function (data) {
+            //             var result = JSON.parse($(data).find("return").html());
+            //             switch (parseInt(result.status)) {
+            //                 case -1:
+            //                     roads.alertAIO(result.message);
+            //                     break;
+            //                 case 0:
+            //                     roads.alertAIO(result.message);
+            //                     break;
+            //                 case 1:
+            //                     summer.closeWin();
+            //                     roads.execScript("menu", "vue.formSubmitted", {
+            //                         // "item_name": vue.item_name
+            //                     });
+            //                     break;
+            //                 case 2:
+            //                     roads.alertAIO(result.message);
+            //                     break;
+            //                 default:
+            //                     break;
+            //             }
+            //         });
+            //     }
+            // },
+        },
+        watch: {
+            sendCount: function (val) {
+                if (val == vue.picNum && vue.sendFlag == 1) {
+                    vue.sendFlag = 0;
+                    var xhr = new XMLHttpRequest();
+                    var t1; //用来作超时处理
+
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4) {
+                            if (xhr.status == 200) {
+                                try {
+                                    if (t1) clearTimeout(t1);
+                                    her.loadedSpring();
+                                    // 图片上传后重置上传计数器，清空图片上传元素
+                                    vue.sendCount = -1;
+                                    $(".itemPic").empty();
+
+                                    var responseText = xhr.responseText;
+                                    var result = eval("(" + responseText + ")")
+
+                                    if (result.status == 1 || result.status == '1') {
+                                        summer.closeWin();
+                                        roads.execScript("menu", "vue.formSubmitted", {});
+                                    } else
+                                        roads.alertAIO("报错信息：" + result.message);
+                                } catch (e) {
+                                    roads.alertAIO("异常信息：" + JSON.stringify(e));
+                                }
+                            }
+                        }
+                    }
+
+                    xhr.open('POST', vue.loginIP + "/jysn/file_up/up", true);
+
+                    t1 = setTimeout(function () {
+                        if (xhr) xhr.abort();
+                        her.loadedSpring();
+                        // 图片上传后重置上传计数器，清空图片上传元素
+                        vue.sendCount = -1;
+                        $(".itemPic").empty();
+                        roads.alertAIO('抱歉，请求超时！');
+                    }, 5000);
+
+                    xhr.send(vue.fd);
+                }
+            }
         },
         mounted: function () {
             // 加载数据...
@@ -335,3 +458,47 @@ function callbackNFC(nfcEvent) {
         vue.nfcReading = "读取到卡号： " + nfcEvent.cardinfo;
     }
 }
+
+function loadImage(img) {
+    try {
+        var timer = setInterval(function () {
+            if (img.complete) {
+                var canvas = document.createElement("canvas"), //创建canvas元素
+                    width = img.naturalWidth / 5, //确保canvas的尺寸和图片一样
+                    height = img.naturalHeight / 5;
+                canvas.width = width;
+                canvas.height = height;
+                canvas.getContext("2d").drawImage(img, 0, 0, width, height);
+                //将图片绘制到canvas中
+                var dataURL = canvas.toDataURL('image/jpeg');
+
+                //dataURL 转换为blob
+                var arr = dataURL.split(','),
+                    mime = arr[0].match(/:(.*?);/)[1],
+                    bstr = atob(arr[1]),
+                    n = bstr.length,
+                    u8arr = new Uint8Array(n);
+
+                while (n--) {
+                    u8arr[n] = bstr.charCodeAt(n);
+                }
+
+                var blob = new Blob([u8arr], {
+                    type: mime
+                });
+                //将生成的blob塞入表单数据
+                vue.fd.append(vue.sendCount, blob, vue.sendCount + ".jpg");
+
+                $(img).addClass("thumbnail");
+
+                $(img).appendTo('.itemPic');
+
+                vue.sendCount++;
+
+                clearInterval(timer);
+            }
+        }, 50)
+    } catch (e) {
+        alert(e);
+    }
+};

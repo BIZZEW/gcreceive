@@ -7,8 +7,8 @@
     <title></title>
     <link rel="stylesheet" href="../../../css/iuapmobile.um.css">
     <link rel="stylesheet" href="../../../css/mintui.css" />
-    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1097062_awi50q08wat.css">
     <link type="text/css" rel="stylesheet" href="../../util/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_1097062_gc0uezkj83h.css">
     <link rel="stylesheet" href="../../util/util.css">
     <link rel="stylesheet" href="receiveConfirm.css">
 
@@ -25,6 +25,7 @@
 
 <body>
     <div class="loadingLayer"></div>
+    <div class="itemPic"></div>
     <div id="audioHost">
         <audio id="audioCode"></audio>
     </div>
@@ -135,9 +136,19 @@
                 </div>
             </div>
 
-            <div class="ultra-item" style="margin-bottom: 100px">
+            <div class="ultra-item">
                 <label class="ultra-label">退货状态</label>
                 <div class="ultra-content"><input placeholder="退货状态" type="text" v-model="refundStatus" readonly>
+                </div>
+            </div>
+
+            <div class="ultra-item" style="margin-bottom: 100px">
+                <label class="ultra-label">上传照片</label>
+                <div class="ultra-content" @click="goPicCollection()" id="goPicCollection">
+                    <div class="info-middle" style="padding-left: 10px;">
+                        已上传照片 <span v-text="picNum"></span>&nbsp;/&nbsp;1
+                    </div>
+                    <i class="icon iconfont icon-uploadPic" style="font-size:24px"></i>
                 </div>
             </div>
 

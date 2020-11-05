@@ -202,6 +202,188 @@ window.roads = (function (win, r) {
         });
     };
 
+    /* 图片路径存放数组 */
+    r.g_path = "";
+    // r.g_path4show = "";
+    /*图片上限*/
+    r.g_num = null;
+    r.openCamera = function (photosPath, picNum) {
+        r.g_path = photosPath;
+        // r.g_path4show = photosPath4show;
+        r.g_num = picNum;
+        // 打开相机
+        summer.openCamera({
+            bindfield: "image",
+            callback: function (args) {
+                var path = args.imgPath;
+                r.pushPic(path);
+                // r.compressImg(path);
+            },
+            // cameraType: custom
+        });
+    };
+
+    r.openPhotoAlbum = function (photosPath, picNum, sentPic) {
+        r.g_path = photosPath;
+        // r.g_path4show = photosPath4show;
+        r.g_num = picNum;
+        // 打开相册
+        var count = r.g_num - parseInt(r.g_path.length) - sentPic;
+        summer.openPhotoAlbum({
+            bindfield: "image",
+            maxCount: count,
+            type: "multiple", //支持选多张图片
+            callback: function (args) {
+                var paths = args.imgPaths;
+                for (var i = 0; i < paths.length; i++) {
+                    r.pushPic(paths[i].imgPath);
+                    // r.compressImg(paths[i].imgPath);
+                }
+            }
+        });
+    };
+
+    // 插入图片
+    r.pushPic = function (path) {
+        if (r.g_path.length >= r.g_num) {
+            return;
+        }
+        var id = String(r.g_path.length);
+        var picObj = {
+            "path": path,
+            "jid": id
+        };
+        r.g_path.push(picObj);
+    };
+
+    r.openPhoto = function (photosPath, picNum) {
+        r.g_path = photosPath;
+        r.g_num = picNum;
+        UM.actionsheet({
+            title: '',
+            items: ['拍照', '从相册中选择'],
+            callbacks: [
+                function () {
+                    // 打开相机
+                    summer.openCamera({
+                        bindfield: "image",
+                        callback: function (args) {
+                            var path = args.imgPath;
+                            r.compressImg(path);
+                        },
+                        // cameraType: custom
+                    });
+                },
+                function () {
+                    // 打开相册
+                    var count = r.g_num - parseInt(r.g_path.length);
+                    summer.openPhotoAlbum({
+                        bindfield: "image",
+                        maxCount: count,
+                        type: "multiple", //支持选多张图片
+                        callback: function (args) {
+                            var paths = args.imgPaths;
+                            for (var i = 0; i < paths.length; i++) {
+                                r.compressImg(paths[i].imgPath);
+                            }
+                        }
+                    });
+                }
+            ]
+
+        });
+    };
+
+    // 压缩图片
+    r.compressImg = function (path) {
+        var pathArr = path.split('/');
+        var newPath = pathArr[pathArr.length - 1];
+        // 调用上传
+        summer.compressImg({
+            src: path,
+            path: 'compressImg/camera' + newPath,
+            quality: "1", // 质量压缩比例
+            callback: function (arg) {
+                if (r.g_path.length >= r.g_num) {
+                    return;
+                }
+                var id = String(r.g_path.length);
+                var picObj = {
+                    "path": arg.savepath,
+                    "jid": id
+                };
+                r.g_path.push(picObj);
+            }
+        });
+    };
+
+    // 预览图片
+    r.goSwiperImg = function (imgArr) {
+        // 预览轮播图
+        var ev = event || window.event;
+        var activeIndex = ev.target.dataset.index;
+        var imgUrlArr = imgArr.map(function (e) {
+            return e.path;
+        });
+        summer.openWin({
+            id: 'PhotosSwiper',
+            url: 'dynamic/html/photosSwiper.html',
+            create: false,
+            animation: {
+                type: "fade",
+                subType: "",
+                duration: 300
+            },
+            pageParam: {
+                activeIndex: activeIndex,
+                imgArr: imgUrlArr,
+                localPath: true
+            }
+        });
+    };
+
+    /* 删除单张图片 */
+    r.closePic = function (obj) {
+        var id = $(obj).siblings().find('img').attr("data-index");
+        for (var i = 0; i < r.g_path.length; i++) {
+            if (r.g_path[i].jid == id) {
+                r.g_path.splice(i, 1);
+                i--;
+            }
+        }
+        $(obj).parent(".conBox").remove();
+        r.g_path.forEach(function (e, i) {
+            e.jid = String(i);
+            $("#plus").siblings(".conBox").eq(i).find('img').attr("data-index", String(i));
+        });
+        $("#plus").removeClass("none");
+    };
+
+    //涉及到头像处理
+    r.thumbOnload = function (ev) {
+        var ev = ev || window.event;
+        var oImg = ev.target;
+        $(oImg).removeAttr('style');
+
+        var w = oImg.naturalWidth;
+        var h = oImg.naturalHeight;
+        var parentW = $(oImg).parent().width();
+        var parentH = $(oImg).parent().height();
+        var move;
+        if (w >= h) {
+            $(oImg).css('height', parentH);
+            var actuallyW = parseFloat($(oImg).css('width'));
+            move = -(actuallyW - parentW) / 2 + "px";
+            $(oImg).css("transform", "translate(" + move + ",0)");
+        } else {
+            $(oImg).css('width', parentW);
+            var actuallyH = parseFloat($(oImg).css('height'));
+            move = -(actuallyH - parentH) / 2 + "px";
+            $(oImg).css("transform", "translate(0," + move + ")");
+        }
+        $(oImg).css("display", "block");
+    };
+
     // 监听打开窗口
     r.openWinSpecial = function (module, winid, win_url, pageParam) {
         var baseUrl = "";

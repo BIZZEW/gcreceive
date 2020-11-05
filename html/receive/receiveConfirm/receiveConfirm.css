@@ -9,6 +9,16 @@
     justify-content: center;
 }
 
+.itemPic {
+    opacity: 0;
+    width: 100px;
+    height: 100px;
+    overflow: scroll;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
 .nfcReading {
     background: white;
     width: 80%;

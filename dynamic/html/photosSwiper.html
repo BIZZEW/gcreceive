@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title></title>
+    <link rel="stylesheet" href="../../css/iuapmobile.um.css">
+    <link rel="stylesheet" href="../css/swiper-3.4.2.min.css">
+    <link rel="stylesheet" href="../css/photosSwiper.css">
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <my-swiper v-if="swiperData && swiperData.length != 0" v-bind:params="params" v-bind:swiper-data="swiperData" v-bind:local-path="localPath"></my-swiper>
+        </div>
+    </div>
+
+    <!-- <script src="../../js/vue.js"></script> -->
+    <script type="text/javascript" src="../../node_modules/vue/dist/vue.min.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/summer.js"></script>
+    <!-- <script src="../../../js/moli.common.js"></script> -->
+    <script src="../../js/Frameworks/iuapmobile.frameworks.ui.js"></script>
+    <script src="../js/swiper-3.4.2.min.js"></script>
+    <script src="../js/hammer.js"></script>
+    <script src="../js/mySwiper.js"></script>
+    <script src="../js/photosSwiper.js"></script>
+</body>
+
+</html>
